@@ -4,13 +4,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://titaniumtechnology.ae"),
-  title: "TiTANiUM Technology | Modern IT & Infrastructure Solutions",
+  title: "TiTANiUM Technology | Premium IT, Cloud & Cybersecurity Solutions",
   description:
-    "Reliable IT support, infrastructure, networking, troubleshooting, CCTV systems, Microsoft 365, website solutions, and technical consultation in Dubai, UAE.",
+    "Premium IT support, cloud readiness, network infrastructure, cybersecurity-minded consulting, CCTV systems, Microsoft 365, website solutions, and technical support in Dubai, UAE.",
   keywords: [
     "TiTANiUM Technology",
     "Dubai IT support",
     "network solutions",
+    "cybersecurity Dubai",
+    "cloud infrastructure Dubai",
     "Microsoft 365 setup",
     "CCTV systems",
     "office technology setup",
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TiTANiUM Technology",
     description:
-      "Modern IT & Infrastructure Solutions for businesses and individuals in Dubai, UAE.",
+      "Premium IT, cloud, network, and cybersecurity-minded infrastructure solutions for businesses and individuals in Dubai, UAE.",
     type: "website",
     locale: "en_AE",
     images: [
@@ -39,9 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TiTANiUM Technology | Modern IT & Infrastructure Solutions",
+    title: "TiTANiUM Technology | Premium IT, Cloud & Cybersecurity Solutions",
     description:
-      "Reliable technology services, IT support, networking, troubleshooting, and digital solutions in Dubai.",
+      "Premium technology services, IT support, networking, cloud readiness, cybersecurity consulting, and digital solutions in Dubai.",
     images: ["/logo-cropped.png"]
   }
 };

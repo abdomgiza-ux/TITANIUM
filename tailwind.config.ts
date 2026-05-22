@@ -22,6 +22,8 @@ const config: Config = {
           950: "#030508"
         },
         electric: {
+          100: "#d8f6ff",
+          200: "#aeeaff",
           300: "#7bd9ff",
           400: "#36c4ff",
           500: "#009dff",
