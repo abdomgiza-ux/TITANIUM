@@ -22,6 +22,7 @@ const lerp = (a, b, k) => a + (b - a) * k;
 const smooth = (a, b, v) => { const x = clamp((v - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
 
 let lang = getLang();
+let introDur = 0; // seconds the splash holds the hero text back
 const stage = createScene($('#stage'), { reducedMotion: reduced });
 if (!stage) $('#stage').style.display = 'none';
 
@@ -67,7 +68,7 @@ function buildSplits(animate) {
       duration: 1.1,
       ease: 'power4.out',
       stagger: 0.07,
-      delay: isHero ? 0.15 : 0,
+      delay: isHero ? 0.15 + introDur : 0,
       scrollTrigger: isHero ? null : { trigger: el, start: 'top 88%', once: true },
     });
     splitTriggers.set(el, tween.scrollTrigger || tween);
@@ -232,7 +233,7 @@ function setupReveals() {
       duration: 1.1,
       ease: 'power3.out',
       stagger: 0.12,
-      delay: 0.35,
+      delay: 0.35 + introDur,
     });
   }
 }
@@ -240,6 +241,42 @@ function setupReveals() {
 /* ------------------------------------------------------------------ *
  *  Boot
  * ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ *
+ *  Logo splash: ~1 s of logo with a heartbeat, then fade out
+ * ------------------------------------------------------------------ */
+function startSplash() {
+  const splash = $('#splash');
+  let seen = false;
+  try { seen = sessionStorage.getItem('introSeen') === '1'; } catch (e) { /* ignore */ }
+  if (!splash || reduced || seen) { splash?.remove(); return; }
+  try { sessionStorage.setItem('introSeen', '1'); } catch (e) { /* ignore */ }
+
+  const img = $('img', splash);
+  const root = document.documentElement;
+  root.classList.add('intro-on');
+  introDur = 1.5;
+
+  const beat = (t) => {
+    const p = t % 1.1;
+    return Math.exp(-(((p - 0.12) / 0.06) ** 2)) + 0.6 * Math.exp(-(((p - 0.38) / 0.07) ** 2));
+  };
+  const t0 = performance.now();
+  (function frame() {
+    const t = (performance.now() - t0) / 1000;
+    const b = beat(Math.max(0, t - 0.25));
+    const inK = smooth(0, 0.25, t);
+    const outK = smooth(1.25, 1.75, t);
+    img.style.opacity = String(inK * (1 - outK));
+    const press = 1.04 - 0.04 * smooth(0, 0.3, t);
+    img.style.transform = `scale(${(press * (1 + 0.035 * b)).toFixed(4)})`;
+    splash.style.opacity = String(1 - outK);
+    stage?.setPulse(b * (1 - outK * 0.5));
+    if (t < 1.8) requestAnimationFrame(frame);
+    else { splash.remove(); root.classList.remove('intro-on'); stage?.setPulse(0); }
+  })();
+}
+startSplash();
+
 applyLang(lang, true);
 setupReveals();
 measure();

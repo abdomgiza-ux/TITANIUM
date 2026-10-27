@@ -119,6 +119,7 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
   props.forEach((p) => { propsGroup.add(p.group); p.group.visible = false; });
   const N = props.length;
   const svc = { cur: -1, tgt: -1, flip: 1 };
+  let pulse = 0;
 
   // state: current (smoothed) vs target (driven by scroll)
   const cur = { explode: 0, ry: -0.7, rx: 0.28, x: 1.5, y: 0, s: 1, o: 1 };
@@ -175,7 +176,7 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
 
     root.visible = pw < 0.995;
     root.position.set(narrow ? 0 : cur.x, cur.y + (narrow ? 2.4 : 0), 0);
-    root.scale.setScalar(Math.max(0.0001, cur.s * (narrow ? 0.55 : 1) * (1 - pw)));
+    root.scale.setScalar(Math.max(0.0001, cur.s * (narrow ? 0.55 : 1) * (1 - pw) * (1 + 0.035 * pulse)));
     root.rotation.set(cur.rx + py, cur.ry + idle + px, 0);
 
     propsGroup.visible = pw > 0.001;
@@ -202,7 +203,7 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
       s.glowTarget = i === active ? 6 : 0.45;
       s.glow = lerp(s.glow, s.glowTarget, k);
       const flicker = reducedMotion ? 0 : (Math.sin(time * 3 + i * 1.7) * 0.5 + 0.5) * 0.25;
-      s.ledMat.emissiveIntensity = s.glow + flicker;
+      s.ledMat.emissiveIntensity = s.glow + flicker + 1.6 * pulse;
     }
 
     const alpha = THREE.MathUtils.clamp(cur.o * (narrow ? lerp(0.55, 0.95, pw) : 1), 0, 1);
@@ -215,6 +216,7 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
   return {
     setPose(p) { Object.assign(tgt, p); },
     setActive(i) { active = i; },
+    setPulse(v) { pulse = v; },
     setServices(f, flip = 1) { svc.tgt = f; svc.flip = flip; },
     chapters: N,
     isNarrow: () => narrow,

@@ -408,3 +408,18 @@ html[lang='ar'] .card h3 { letter-spacing: 0; line-height: 1.35; }
 /* ---------- LOGO ---------- */
 .brand-logo { height: 32px; width: auto; display: block; }
 .foot-logo { height: 26px; width: auto; display: block; opacity: 0.9; }
+
+/* ---------- SPLASH ---------- */
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 6, 8, 0.86);
+  pointer-events: none;
+}
+.js.intro-on #splash { display: flex; }
+#splash img { width: min(560px, 72vw); height: auto; opacity: 0; will-change: transform, opacity; }
+.js.intro-on { overflow: hidden; }
