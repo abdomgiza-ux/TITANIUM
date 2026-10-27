@@ -468,3 +468,5 @@ html[lang='ar'] .card h3 { letter-spacing: 0; line-height: 1.35; }
 .foot-socials a { display: inline-flex; color: var(--muted); transition: color 0.25s; }
 .foot-socials a:hover { color: #fff; }
 .foot-socials svg { width: 20px; height: 20px; }
+
+.channel-wide { grid-column: 1 / -1; }
