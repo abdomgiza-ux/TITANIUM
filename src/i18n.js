@@ -1,0 +1,183 @@
+export const dict = {
+  en: {
+    'nav.services': 'Services', 'nav.process': 'Process', 'nav.work': 'Work', 'nav.about': 'About',
+    'nav.cta': 'Get in touch', 'nav.lang': 'العربية',
+
+    'hero.eyebrow': 'Dubai · IT infrastructure',
+    'hero.title': 'Technology that stays out of your way.',
+    'hero.sub': 'Networks, Microsoft 365, VoIP, CCTV and everyday IT support — engineered and run by one accountable specialist.',
+    'hero.cta1': 'Start a project', 'hero.cta2': 'See what we do',
+
+    'intro.text': "Most IT problems aren't loud. They're a slow computer, a dropped call, a camera that was offline last Tuesday. We fix those — and the reasons behind them.",
+
+    'svc.eyebrow': 'What we do',
+    'svc1.t': 'Everyday IT, handled.',
+    'svc1.d': 'Remote and on-site L1/L2 support for Windows, apps and email — plus installation, servicing and maintenance of office printers and scanners.',
+    'svc1.l': 'Windows 10/11 · Printers & scanners · Remote & on-site',
+    'svc2.t': 'A network you never think about.',
+    'svc2.d': 'LAN/WAN design, VLANs, DHCP and DNS, VPN, switching and Wi-Fi — with structured cabling and clean rack installation underneath.',
+    'svc2.l': 'TCP/IP · VLAN · VPN · Structured cabling · Server racks',
+    'svc3.t': 'Accounts, access, and order.',
+    'svc3.d': 'Microsoft 365 and Active Directory — user provisioning, security policies, email and Teams — set up properly and documented.',
+    'svc3.l': 'Microsoft 365 · Active Directory · Security policies',
+    'svc4.t': 'Calls and cameras that just work.',
+    'svc4.d': '3CX and Grandstream VoIP across multiple branches, plus CCTV deployment and preventive maintenance.',
+    'svc4.l': '3CX · Grandstream · CCTV',
+    'svc5.t': 'Digital tools, built to fit.',
+    'svc5.d': "Business websites, and custom software when off-the-shelf won't do — like the point-of-sale system built for a restaurant in Alexandria.",
+    'svc5.l': 'Websites · Custom software · POS',
+
+    'num.title': 'Built on hands-on work, not slides.',
+    'num1': 'years across the UAE and Egypt',
+    'num2': 'users supported across multiple branches',
+    'num3': 'IT assets managed end to end',
+    'num4': 'slow workstations revived in a single week',
+
+    'proc.eyebrow': 'How it works',
+    'p1t': 'Discover', 'p1d': 'We learn how your team actually works — devices, network, accounts, risks — before touching anything.',
+    'p2t': 'Design', 'p2d': "A clear plan: the simplest setup that's secure, scalable and easy for you to support.",
+    'p3t': 'Deploy', 'p3d': 'Installed and configured with minimal disruption to your day, then tested before we call it done.',
+    'p4t': 'Document & support', 'p4d': 'Everything written down, and a direct line to the person who built it when something needs attention.',
+
+    'work.eyebrow': 'Selected work',
+    'work.title': 'Real problems. Measured results.',
+    'w1tag': 'Workstations', 'w1t': '60 machines, one week',
+    'w1d': 'Diagnosed and upgraded 60 underperforming call-center workstations — cleaning, hardware maintenance and RAM upgrades — ending recurring complaints about slow, unreliable computers.',
+    'w2tag': 'Operations', 'w2t': 'An IT department from zero',
+    'w2d': "Founded and ran a company's entire IT function with no prior systems or team: procurement, infrastructure, policies, documentation and day-to-day support.",
+    'w3tag': 'Software', 'w3t': 'A POS built for a restaurant',
+    'w3d': 'Co-developed a point-of-sale system from scratch for an Alexandria restaurant: interface and workflow design, then a client pilot to fix issues before full rollout.',
+    'w4tag': 'Infrastructure', 'w4t': 'Cabling, racks and CCTV',
+    'w4d': 'Structured cabling, server rack assembly and CCTV deployment across client sites, with preventive maintenance to keep everything running reliably.',
+
+    'about.eyebrow': 'Founder-led',
+    'about.title': 'One accountable specialist.',
+    'about.p1': 'TiTANiUM Technology is led by Abdulrahman Mansour, an IT operations and infrastructure specialist with over six years of experience across the UAE and Egypt.',
+    'about.p2': 'He currently manages multi-branch infrastructure for a clinic group, and has also built an IT department from the ground up. When you work with TiTANiUM, you deal directly with the person doing the work.',
+    'about.langs': 'Arabic (native) · English (professional)',
+
+    'contact.eyebrow': 'Contact',
+    'contact.title': 'Tell us what needs fixing or building.',
+    'contact.wa': 'Chat on WhatsApp',
+    'f.name': 'Name', 'f.email': 'Email', 'f.phone': 'Phone', 'f.company': 'Company',
+    'f.topic': 'What do you need?', 'f.msg': 'Message', 'f.send': 'Send message',
+    'o1': 'IT support', 'o2': 'Network & cabling', 'o3': 'Microsoft 365 / Active Directory',
+    'o4': 'VoIP & CCTV', 'o5': 'Printers & office equipment', 'o6': 'Website / software', 'o7': 'Something else',
+    'status.sending': 'Sending…',
+    'status.ok': "Thanks — your message is in. You'll hear back soon.",
+    'status.err': 'Something went wrong. Please message us on WhatsApp instead.',
+    'status.invalid': 'Please fill in your name, email and message.',
+    'footer.rights': '© 2026 TiTANiUM Technology. All rights reserved.',
+    'contact.sub': "Message us on WhatsApp, or open a ticket and you'll hear back directly — usually the same day.",
+    'contact.ticket': 'Open a ticket',
+    'contact.ticket.sub': 'We reply by email',
+    'contact.loc': 'Dubai, UAE',
+    'tk.doc': 'Open a ticket — TiTANiUM Technology',
+    'tk.back': 'Back to site',
+    'tk.eyebrow': 'Support ticket',
+    'tk.title': "Tell us what's going on.",
+    'tk.sub': "Describe the problem or the project. We'll reply to the email you give below, usually the same day.",
+    'tk.send': 'Submit ticket',
+    'tk.ok': 'Ticket received. Your reference:',
+    'f.subject': 'Subject',
+  },
+
+  ar: {
+    'nav.services': 'الخدمات', 'nav.process': 'طريقة العمل', 'nav.work': 'أعمالنا', 'nav.about': 'من نحن',
+    'nav.cta': 'تواصل معنا', 'nav.lang': 'EN',
+
+    'hero.eyebrow': 'دبي · البنية التحتية لتقنية المعلومات',
+    'hero.title': 'تقنية تعمل بصمت، لتعمل أنت بلا انقطاع.',
+    'hero.sub': 'شبكات، Microsoft 365، أنظمة اتصال VoIP، كاميرات مراقبة ودعم فني يومي — يصممها وينفذها متخصص واحد مسؤول أمامك.',
+    'hero.cta1': 'ابدأ مشروعك', 'hero.cta2': 'تعرّف على خدماتنا',
+
+    'intro.text': 'معظم مشكلات التقنية لا تُحدث ضجيجاً. جهاز بطيء، مكالمة تنقطع، كاميرا كانت متوقفة الثلاثاء الماضي. نحن نعالج هذه المشكلات — وأسبابها أيضاً.',
+
+    'svc.eyebrow': 'ماذا نقدّم',
+    'svc1.t': 'دعم تقني يومي بلا عناء.',
+    'svc1.d': 'دعم فني عن بُعد وفي الموقع (المستوى الأول والثاني) لأنظمة Windows والتطبيقات والبريد — إضافةً إلى تركيب وصيانة طابعات وماسحات المكاتب.',
+    'svc1.l': 'Windows 10/11 · الطابعات والماسحات · عن بُعد وفي الموقع',
+    'svc2.t': 'شبكة لا تفكّر بها أصلاً.',
+    'svc2.d': 'تصميم شبكات LAN/WAN وVLAN وإعداد DHCP وDNS وVPN والسويتشات والواي فاي — فوقها تمديدات كابلات منظّمة وتركيب أنيق للراكات.',
+    'svc2.l': 'TCP/IP · VLAN · VPN · التمديدات المنظّمة · راكات الخوادم',
+    'svc3.t': 'حسابات وصلاحيات منظّمة.',
+    'svc3.d': 'Microsoft 365 وActive Directory — إنشاء المستخدمين وسياسات الأمان والبريد وTeams — بإعداد سليم وتوثيق كامل.',
+    'svc3.l': 'Microsoft 365 · Active Directory · سياسات الأمان',
+    'svc4.t': 'مكالمات وكاميرات تعمل دائماً.',
+    'svc4.d': 'أنظمة 3CX وGrandstream عبر عدة فروع، مع تركيب كاميرات المراقبة والصيانة الوقائية.',
+    'svc4.l': '3CX · Grandstream · كاميرات المراقبة',
+    'svc5.t': 'أدوات رقمية على مقاسك.',
+    'svc5.d': 'مواقع للأعمال، وبرمجيات مخصصة عندما لا تكفي الحلول الجاهزة — مثل نظام نقاط البيع الذي طُوّر لمطعم في الإسكندرية.',
+    'svc5.l': 'المواقع · البرمجيات المخصصة · نقاط البيع',
+
+    'num.title': 'نبني على عمل فعلي، لا على عروض تقديمية.',
+    'num1': 'سنوات خبرة في الإمارات ومصر',
+    'num2': 'مستخدماً يتم دعمهم عبر عدة فروع',
+    'num3': 'جهازاً وأصلاً تقنياً تتم إدارته بالكامل',
+    'num4': 'جهاز بطيء أُعيد تأهيله في أسبوع واحد',
+
+    'proc.eyebrow': 'كيف نعمل',
+    'p1t': 'نكتشف', 'p1d': 'نفهم كيف يعمل فريقك فعلياً — الأجهزة والشبكة والحسابات والمخاطر — قبل أن نلمس أي شيء.',
+    'p2t': 'نصمّم', 'p2d': 'خطة واضحة: أبسط إعداد ممكن يكون آمناً وقابلاً للتوسع وسهل الدعم.',
+    'p3t': 'ننفّذ', 'p3d': 'تركيب وإعداد بأقل قدر من التعطيل ليومك، ثم اختبار قبل أن نعلن الانتهاء.',
+    'p4t': 'نوثّق وندعم', 'p4d': 'كل شيء موثّق، وخط مباشر مع الشخص الذي بناه عندما تحتاج لأي تدخل.',
+
+    'work.eyebrow': 'من أعمالنا',
+    'work.title': 'مشكلات حقيقية. نتائج قابلة للقياس.',
+    'w1tag': 'الأجهزة', 'w1t': '60 جهازاً في أسبوع',
+    'w1d': 'تشخيص وتطوير 60 جهاز عمل ضعيف الأداء في مركز اتصال — تنظيف وصيانة للعتاد وترقية الذاكرة — لإنهاء الشكاوى المتكررة من بطء الأجهزة وعدم موثوقيتها.',
+    'w2tag': 'العمليات', 'w2t': 'قسم تقنية معلومات من الصفر',
+    'w2d': 'تأسيس وإدارة قسم تقنية المعلومات بالكامل في شركة دون أنظمة أو فريق سابق: المشتريات والبنية التحتية والسياسات والتوثيق والدعم اليومي.',
+    'w3tag': 'البرمجيات', 'w3t': 'نظام نقاط بيع لمطعم',
+    'w3d': 'المشاركة في تطوير نظام نقاط بيع من الصفر لمطعم في الإسكندرية: تصميم الواجهة وسير العمل، ثم فترة تجريبية مع العميل لمعالجة المشكلات قبل الإطلاق الكامل.',
+    'w4tag': 'البنية التحتية', 'w4t': 'كابلات وراكات وكاميرات مراقبة',
+    'w4d': 'تمديد كابلات منظّمة وتجميع راكات الخوادم وتركيب كاميرات المراقبة في مواقع العملاء، مع صيانة وقائية لضمان استمرار العمل بموثوقية.',
+
+    'about.eyebrow': 'بقيادة المؤسس',
+    'about.title': 'متخصص واحد مسؤول أمامك.',
+    'about.p1': 'يقود TiTANiUM Technology عبدالرحمن منصور، متخصص في عمليات تقنية المعلومات والبنية التحتية، بخبرة تتجاوز ست سنوات في الإمارات ومصر.',
+    'about.p2': 'يدير حالياً البنية التحتية لمجموعة عيادات متعددة الفروع، وسبق أن أسّس قسم تقنية معلومات من الصفر. عندما تتعامل مع TiTANiUM فأنت تتعامل مباشرة مع من ينفّذ العمل.',
+    'about.langs': 'العربية (لغة أم) · الإنجليزية (احترافية)',
+
+    'contact.eyebrow': 'تواصل',
+    'contact.title': 'أخبرنا بما تحتاج إصلاحه أو بناءه.',
+    'contact.wa': 'تواصل عبر واتساب',
+    'f.name': 'الاسم', 'f.email': 'البريد الإلكتروني', 'f.phone': 'الهاتف', 'f.company': 'الشركة',
+    'f.topic': 'ماذا تحتاج؟', 'f.msg': 'رسالتك', 'f.send': 'إرسال',
+    'o1': 'دعم تقني', 'o2': 'شبكات وتمديدات', 'o3': 'Microsoft 365 / Active Directory',
+    'o4': 'VoIP وكاميرات مراقبة', 'o5': 'طابعات ومعدات مكتبية', 'o6': 'موقع / برمجيات', 'o7': 'شيء آخر',
+    'status.sending': 'جارٍ الإرسال…',
+    'status.ok': 'شكراً — وصلتنا رسالتك وسنرد عليك قريباً.',
+    'status.err': 'حدث خطأ ما. من فضلك راسلنا عبر واتساب.',
+    'status.invalid': 'من فضلك أدخل الاسم والبريد والرسالة.',
+    'footer.rights': '© 2026 TiTANiUM Technology. جميع الحقوق محفوظة.',
+    'contact.sub': 'راسلنا عبر واتساب، أو افتح تذكرة وسيصلك الرد مباشرة — غالباً في اليوم نفسه.',
+    'contact.ticket': 'افتح تذكرة',
+    'contact.ticket.sub': 'نرد عليك بالبريد الإلكتروني',
+    'contact.loc': 'دبي، الإمارات',
+    'tk.doc': 'افتح تذكرة — TiTANiUM Technology',
+    'tk.back': 'العودة للموقع',
+    'tk.eyebrow': 'تذكرة دعم',
+    'tk.title': 'أخبرنا بما يحدث.',
+    'tk.sub': 'اشرح المشكلة أو المشروع. سنرد على البريد الذي تكتبه أدناه، غالباً في اليوم نفسه.',
+    'tk.send': 'إرسال التذكرة',
+    'tk.ok': 'تم استلام تذكرتك. رقمها المرجعي:',
+    'f.subject': 'الموضوع',
+  },
+};
+
+export function getLang() {
+  try {
+    const saved = localStorage.getItem('lang');
+    if (saved === 'en' || saved === 'ar') return saved;
+  } catch (e) { /* storage unavailable */ }
+  return 'en';
+}
+
+export function saveLang(lang) {
+  try { localStorage.setItem('lang', lang); } catch (e) { /* ignore */ }
+}
+
+export function t(lang, key) {
+  return (dict[lang] && dict[lang][key]) || dict.en[key] || '';
+}
