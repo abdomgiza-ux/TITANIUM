@@ -115,15 +115,15 @@ $('#lang').addEventListener('click', () => {
 const ORDER = ['hero', 'intro', 'services', 'numbers', 'process', 'work', 'about', 'contact'];
 const STICKY = new Set(['intro', 'services', 'process']);
 const POSES = [
-  { explode: 0,    ry: -0.7, rx: 0.28, x: 2.9,  y: 0, s: 0.86, o: 1 },
-  { explode: 0,    ry: 0.2,  rx: 0.2,  x: 0,    y: 0, s: 1.35, o: 0.2 },
-  { explode: 0,    ry: -0.5, rx: 0.22, x: -2.7, y: 0, s: 0.9,  o: 1 },
-  { explode: 1,    ry: 0.55, rx: 0.16, x: -2.7, y: 0, s: 0.82, o: 1 },
-  { explode: 0.15, ry: 1.9,  rx: 0.3,  x: 0,    y: 0, s: 1.5,  o: 0.1 },
-  { explode: 0,    ry: 6.0,  rx: 0.22, x: 3.2,  y: 0, s: 0.88, o: 1 },
-  { explode: 0.3,  ry: 6.6,  rx: 0.2,  x: 0,    y: 0, s: 1.3,  o: 0.04 },
-  { explode: 0.1,  ry: 7.0,  rx: 0.25, x: 0,    y: 0, s: 1.3,  o: 0.04 },
-  { explode: 0,    ry: 7.6,  rx: 0.25, x: 0,    y: 0, s: 1.2,  o: 0.08 },
+  { explode: 0,    ry: -0.7, rx: 0.28, x: 2.9,  y: 0, s: 0.86, h: 1, o: 1 },
+  { explode: 0,    ry: 0.2,  rx: 0.2,  x: 0,    y: 0, s: 1.35, h: 0, o: 0.2 },
+  { explode: 0,    ry: -0.5, rx: 0.22, x: -2.7, y: 0, s: 0.9,  h: 0, o: 1 },
+  { explode: 1,    ry: 0.55, rx: 0.16, x: -2.7, y: 0, s: 0.82, h: 0, o: 1 },
+  { explode: 0.15, ry: 1.9,  rx: 0.3,  x: 0,    y: 0, s: 1.5,  h: 0, o: 0.1 },
+  { explode: 0,    ry: 6.0,  rx: 0.22, x: 3.2,  y: 0, s: 0.88, h: 0, o: 1 },
+  { explode: 0.3,  ry: 6.6,  rx: 0.2,  x: 0,    y: 0, s: 1.3,  h: 0, o: 0.04 },
+  { explode: 0.1,  ry: 7.0,  rx: 0.25, x: 0,    y: 0, s: 1.3,  h: 0, o: 0.04 },
+  { explode: 0,    ry: 7.6,  rx: 0.25, x: 0,    y: 0, s: 1.2,  h: 0, o: 0.08 },
 ];
 
 let metrics = [];
@@ -174,6 +174,7 @@ function update() {
       y: lerp(A.y, B.y, e),
       s: lerp(A.s, B.s, e),
       o: lerp(A.o, B.o, e),
+      h: lerp(A.h, B.h, e),
     });
   }
 

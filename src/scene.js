@@ -59,7 +59,7 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
   let pulse = 0;
 
   // state: current (smoothed) vs target (driven by scroll)
-  const cur = { explode: 0, ry: -0.7, rx: 0.28, x: 1.5, y: 0, s: 1, o: 1 };
+  const cur = { explode: 0, ry: -0.7, rx: 0.28, x: 1.5, y: 0, s: 1, o: 1, h: 1 };
   const tgt = { ...cur };
   let active = -1;
   let pointer = { x: 0, y: 0 };
@@ -112,13 +112,13 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
     const pw = smooth(0, 0.12, f) * (1 - smooth(N + 0.03, N + 0.15, f));
 
     root.position.set(narrow ? 0 : cur.x, cur.y + (narrow ? 2.4 : 0), 0);
-    root.scale.setScalar(Math.max(0.0001, cur.s * (narrow ? 0.55 : 1) * (1 + 0.035 * pulse)));
+    root.scale.setScalar(Math.max(0.0001, cur.s * (narrow ? 0.72 : 1) * (1 + 0.035 * pulse)));
     root.rotation.set(cur.rx + py, cur.ry + idle + px, 0);
 
     propsGroup.visible = pw > 0.001;
     if (propsGroup.visible) {
-      propsGroup.position.set(narrow ? 0 : -2.45 * svc.flip, narrow ? 2.5 : 0, 0);
-      propsGroup.scale.setScalar(narrow ? 0.6 : 1);
+      propsGroup.position.set(narrow ? 0 : -2.45 * svc.flip, narrow ? 2.0 : 0, 0);
+      propsGroup.scale.setScalar(narrow ? 0.66 : 1);
       propsGroup.rotation.set(0.22 + py, -0.3 * svc.flip + Math.sin(time * 0.45) * 0.14 + px, 0);
       for (let i = 0; i < N; i++) {
         const t = f - i;
@@ -128,7 +128,7 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
       }
     }
 
-    hero.setOpacity(THREE.MathUtils.clamp(cur.o * (narrow ? 0.7 : 1) * (1 - pw), 0, 1));
+    hero.setOpacity(THREE.MathUtils.clamp(cur.o * (narrow ? lerp(0.22, 0.95, cur.h) : 1) * (1 - pw), 0, 1));
     hero.update(time, cur.explode);
     bg.update(time, window.scrollY, narrow);
 
