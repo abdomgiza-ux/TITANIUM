@@ -447,3 +447,24 @@ html[lang='ar'] .card h3 { letter-spacing: 0; line-height: 1.35; }
 .js.intro-on { overflow: hidden; }
 
 @keyframes shine { to { background-position: 100% 0; } }
+
+/* ---------- SOCIALS ---------- */
+.socials { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 28px; }
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px 11px 16px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--card);
+  font-size: 15px;
+  font-weight: 500;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+}
+.social svg { width: 22px; height: 22px; }
+.social:hover { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }
+.foot-socials { display: flex; gap: 14px; }
+.foot-socials a { display: inline-flex; color: var(--muted); transition: color 0.25s; }
+.foot-socials a:hover { color: #fff; }
+.foot-socials svg { width: 20px; height: 20px; }
