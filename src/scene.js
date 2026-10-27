@@ -1,11 +1,14 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { buildProps } from './props.js';
 
 const SLABS = 5;
 const ACCENT = new THREE.Color(0x2997ff);
 
 const lerp = (a, b, t) => a + (b - a) * t;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const smooth = (a, b, v) => { const x = clamp((v - a) / (b - a)); return x * x * (3 - 2 * x); };
 
 /**
  * Titanium server-rack scene. One object, five layers (one per service group).
@@ -109,6 +112,14 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
     slabs.push({ group: g, ledMat, glow: 0.6, glowTarget: 0.6 });
   }
 
+  // service props: assemble / disassemble on scroll
+  const props = buildProps();
+  const propsGroup = new THREE.Group();
+  scene.add(propsGroup);
+  props.forEach((p) => { propsGroup.add(p.group); p.group.visible = false; });
+  const N = props.length;
+  const svc = { cur: -1, tgt: -1, flip: 1 };
+
   // state: current (smoothed) vs target (driven by scroll)
   const cur = { explode: 0, ry: -0.7, rx: 0.28, x: 1.5, y: 0, s: 1, o: 1 };
   const tgt = { ...cur };
@@ -158,9 +169,27 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
     const px = reducedMotion ? 0 : pointer.x * 0.12;
     const py = reducedMotion ? 0 : pointer.y * 0.06;
 
+    svc.cur = lerp(svc.cur, svc.tgt, reducedMotion ? 1 : 1 - Math.exp(-dt * 7));
+    const f = svc.cur;
+    const pw = smooth(0, 0.12, f) * (1 - smooth(N + 0.03, N + 0.15, f));
+
+    root.visible = pw < 0.995;
     root.position.set(narrow ? 0 : cur.x, cur.y + (narrow ? 2.4 : 0), 0);
-    root.scale.setScalar(cur.s * (narrow ? 0.55 : 1));
+    root.scale.setScalar(Math.max(0.0001, cur.s * (narrow ? 0.55 : 1) * (1 - pw)));
     root.rotation.set(cur.rx + py, cur.ry + idle + px, 0);
+
+    propsGroup.visible = pw > 0.001;
+    if (propsGroup.visible) {
+      propsGroup.position.set(narrow ? 0 : -2.45 * svc.flip, narrow ? 2.5 : 0, 0);
+      propsGroup.scale.setScalar(narrow ? 0.6 : 1);
+      propsGroup.rotation.set(0.22 + py, -0.3 * svc.flip + Math.sin(time * 0.45) * 0.14 + px, 0);
+      for (let i = 0; i < N; i++) {
+        const t = f - i;
+        const e = t < 0 ? 1 : t < 0.5 ? 1 - smooth(0, 0.45, t) : smooth(0.8, 1.15, t);
+        props[i].update(e);
+        if (props[i].group.visible && props[i].tick) props[i].tick(time);
+      }
+    }
 
     const spacing = lerp(0.62, 1.08, cur.explode);
     for (let i = 0; i < SLABS; i++) {
@@ -176,7 +205,7 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
       s.ledMat.emissiveIntensity = s.glow + flicker;
     }
 
-    const alpha = THREE.MathUtils.clamp(cur.o * (narrow ? 0.55 : 1), 0, 1);
+    const alpha = THREE.MathUtils.clamp(cur.o * (narrow ? lerp(0.55, 0.95, pw) : 1), 0, 1);
     canvas.style.opacity = alpha.toFixed(3);
 
     renderer.render(scene, camera);
@@ -186,6 +215,8 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
   return {
     setPose(p) { Object.assign(tgt, p); },
     setActive(i) { active = i; },
+    setServices(f, flip = 1) { svc.tgt = f; svc.flip = flip; },
+    chapters: N,
     isNarrow: () => narrow,
   };
 }

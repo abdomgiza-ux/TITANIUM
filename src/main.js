@@ -175,12 +175,15 @@ function update() {
     });
   }
 
+  const svcAt = metrics.findIndex((x) => x.id === 'services');
+  const CH = svcEls.length;
   if (m.id === 'services') {
-    const idx = Math.min(svcEls.length - 1, Math.floor(smooth(0.1, 1, p) * 0.9999 * svcEls.length));
+    const f = p * (CH + 0.15);
+    const idx = Math.min(CH - 1, Math.floor(p * 0.9999 * CH));
     if (idx !== svcIdx) { svcIdx = idx; setOn(svcEls, idx); setOn(svcDots, idx); }
-    stage?.setActive(p > 0.12 ? svcIdx : -1);
+    stage?.setServices(f, flip);
   } else {
-    stage?.setActive(-1);
+    stage?.setServices(i < svcAt ? -1 : CH + 0.2, flip);
   }
 
   if (m.id === 'process') {

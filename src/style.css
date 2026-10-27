@@ -209,7 +209,7 @@ html[lang='ar'] .statement { line-height: 1.5; letter-spacing: 0; }
 .statement .sw { opacity: 0.16; transition: none; }
 
 /* ---------- SERVICES ---------- */
-.services { height: 560vh; }
+.services { height: 880vh; }
 .svc-copy { width: min(560px, 100%); margin-inline-start: auto; position: relative; }
 .svc-stack { position: relative; min-height: 360px; }
 .svc {
@@ -365,7 +365,7 @@ html[lang='ar'] .card h3 { letter-spacing: 0; line-height: 1.35; }
 @media (max-width: 560px) {
   body { font-size: 16px; }
   .row { grid-template-columns: 1fr; }
-  .services { height: 520vh; }
+  .services { height: 820vh; }
   .scroll-cue { display: none; }
 }
 
