@@ -251,7 +251,10 @@ function startSplash() {
   if (!splash || reduced || seen) { splash?.remove(); return; }
   try { sessionStorage.setItem('introSeen', '1'); } catch (e) { /* ignore */ }
 
-  const img = $('img', splash);
+  const img = $('#splash-logo', splash);
+  const letters = $$('#sl-word path', splash);
+  const tag = $('#sl-tag', splash);
+  const stops = [$('#sg0'), $('#sg1'), $('#sg2')];
   const root = document.documentElement;
   root.classList.add('intro-on');
   introDur = 1.5;
@@ -263,12 +266,22 @@ function startSplash() {
   const t0 = performance.now();
   (function frame() {
     const t = (performance.now() - t0) / 1000;
-    const b = beat(Math.max(0, t - 0.25));
-    const inK = smooth(0, 0.25, t);
+    const b = beat(Math.max(0, t - 0.4));
     const outK = smooth(1.25, 1.75, t);
-    img.style.opacity = String(inK * (1 - outK));
-    const press = 1.04 - 0.04 * smooth(0, 0.3, t);
-    img.style.transform = `scale(${(press * (1 + 0.035 * b)).toFixed(4)})`;
+    // letters are struck in one by one, left to right
+    letters.forEach((el, i) => {
+      const k = smooth(0.05 + i * 0.05, 0.3 + i * 0.05, t);
+      el.style.opacity = String(k);
+      el.style.transform = `translateY(${((1 - k) * 26).toFixed(1)}px)`;
+    });
+    tag.style.opacity = String(smooth(0.45, 0.75, t));
+    // a band of light sweeps across the metal
+    const sweep = -0.1 + 1.25 * smooth(0.15, 1.15, t);
+    stops[0].setAttribute('offset', clamp(sweep - 0.12, 0, 1).toFixed(3));
+    stops[1].setAttribute('offset', clamp(sweep, 0, 1).toFixed(3));
+    stops[2].setAttribute('offset', clamp(sweep + 0.12, 0, 1).toFixed(3));
+    img.style.opacity = String(1 - outK);
+    img.style.transform = `scale(${(1 + 0.03 * b).toFixed(4)})`;
     splash.style.opacity = String(1 - outK);
     stage?.setPulse(b * (1 - outK * 0.5));
     if (t < 1.8) requestAnimationFrame(frame);

@@ -421,5 +421,5 @@ html[lang='ar'] .card h3 { letter-spacing: 0; line-height: 1.35; }
   pointer-events: none;
 }
 .js.intro-on #splash { display: flex; }
-#splash img { width: min(560px, 72vw); height: auto; opacity: 0; will-change: transform, opacity; }
+#splash svg { width: min(620px, 78vw); height: auto; overflow: visible; will-change: transform, opacity; }
 .js.intro-on { overflow: hidden; }
