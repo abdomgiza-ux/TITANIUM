@@ -23,7 +23,7 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
     return null;
   }
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
 
@@ -72,7 +72,7 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
     w = window.innerWidth;
     h = window.innerHeight;
     narrow = w < 820;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, narrow ? 1.5 : 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, narrow ? 1.25 : 1.5));
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.position.z = narrow ? 15.5 : 12;
@@ -128,8 +128,8 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
       }
     }
 
-    const sep = hero.update(time, cur.explode);
     hero.setOpacity(THREE.MathUtils.clamp(cur.o * (narrow ? 0.7 : 1) * (1 - pw), 0, 1));
+    hero.update(time, cur.explode);
     bg.update(time, window.scrollY, narrow);
 
     // rim light drifts through the palette, and follows the active service

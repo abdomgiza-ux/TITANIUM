@@ -69,13 +69,14 @@ export function buildLaptop() {
 
   // keyboard deck: lifts off, keys glow in a wave
   const keys = (() => {
-    const c = document.createElement('canvas'); c.width = 768; c.height = 400; const g = c.getContext('2d');
+    const c = document.createElement('canvas'); c.width = 512; c.height = 267; const g = c.getContext('2d');
     const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
     let last = -1;
     return {
       tex: t,
       update(time) {
-        const k = Math.floor(time * 14); if (k === last) return; last = k;
+        const k = Math.floor(time * 8); if (k === last) return; last = k;
+        g.setTransform(512 / 768, 0, 0, 512 / 768, 0, 0);
         g.fillStyle = '#12141a'; g.fillRect(0, 0, 768, 400);
         for (let r = 0; r < 5; r++) for (let col = 0; col < 14; col++) {
           g.fillStyle = `hsl(${(col * 20 + time * 80) % 360} 75% ${34 + 14 * Math.sin(time * 3 + col * 0.5 + r)}%)`;
@@ -101,13 +102,14 @@ export function buildLaptop() {
 
   // lid + screen with boot sequence
   const screen = (() => {
-    const c = document.createElement('canvas'); c.width = 800; c.height = 500; const g = c.getContext('2d');
+    const c = document.createElement('canvas'); c.width = 640; c.height = 400; const g = c.getContext('2d');
     const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
     let last = -1;
     return {
       tex: t,
       update(time, sep, boot) {
-        const k = Math.floor(time * 12); if (k === last) return; last = k;
+        const k = Math.floor(time * 10); if (k === last) return; last = k;
+        g.setTransform(0.8, 0, 0, 0.8, 0, 0);
         const w = 800, h = 500;
         if (sep > 0.04) {
           g.fillStyle = '#0a0713'; g.fillRect(0, 0, w, h);
@@ -170,22 +172,17 @@ export function buildLaptop() {
     }
     lid.rotation.x = -0.28 - 0.18 * sep;
     spinners.forEach((s) => { s.rotation.y = time * (3 + sep * 6); });
-    keys.update(time);
-    screen.update(time, sep, boot);
+    if (group.visible) { keys.update(time); screen.update(time, sep, boot); }
     return sep;
   }
 
   const mats = new Set();
-  group.traverse((o) => { if (o.material) mats.add(o.material); });
+  group.traverse((o) => { if (o.material) { mats.add(o.material); o.material.transparent = true; } });
   let lastO = -1;
   function setOpacity(o) {
     if (Math.abs(o - lastO) < 0.004) return;
     lastO = o;
-    mats.forEach((m) => {
-      const t = o < 0.995;
-      if (m.transparent !== t && !m.userData.keepT) { m.transparent = t; m.needsUpdate = true; }
-      if (!m.userData.keepT) m.opacity = o;
-    });
+    mats.forEach((m) => { m.opacity = o; });
     group.visible = o > 0.004;
   }
 

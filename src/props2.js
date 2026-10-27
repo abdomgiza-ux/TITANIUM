@@ -189,8 +189,8 @@ export function buildPcBuild(M) {
 
   P.tick = (time) => {
     fans.forEach((f, i) => { f.rotation.z = time * (4 + i); });
-    screen.update(time, 10);
-    keys.update(time, 14);
+    screen.update(time, 8);
+    keys.update(time, 8);
   };
   return P;
 }
@@ -339,7 +339,7 @@ export function buildSecurity(M) {
   P.tick = (time) => {
     rec.material.emissiveIntensity = 1.2 + (Math.sin(time * 4) > 0 ? 2.5 : 0);
     cone.material.opacity = 0.09 + 0.06 * (Math.sin(time * 2) * 0.5 + 0.5);
-    feeds.update(time, 10);
+    feeds.update(time, 8);
   };
   return P;
 }
@@ -410,6 +410,6 @@ export function buildPhoneInstall(M) {
   P.add(card(chart), [-1.55, -0.6, 0.9], [0, 0.35, -0.04], 0.6);
   P.add(card(toggles), [1.75, -1.15, 1.1], [0, -0.3, 0.03], 0.75);
 
-  P.tick = (time) => ui.update(time, 12);
+  P.tick = (time) => ui.update(time, 10);
   return P;
 }
