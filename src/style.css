@@ -470,3 +470,42 @@ html[lang='ar'] .card h3 { letter-spacing: 0; line-height: 1.35; }
 .foot-socials svg { width: 20px; height: 20px; }
 
 .channel-wide { grid-column: 1 / -1; }
+
+/* ---------- CONTACT CARDS (brand coloured) ---------- */
+.channels { gap: 14px; }
+.channel {
+  --c1: #8b5cf6; --c2: #ff4fa3;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  border-radius: 22px;
+  border: 1px solid color-mix(in srgb, var(--c1) 45%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--c1) 24%, transparent), color-mix(in srgb, var(--c2) 8%, transparent) 70%, rgba(255, 255, 255, 0.02));
+  overflow: hidden;
+}
+.channel:hover {
+  border-color: color-mix(in srgb, var(--c1) 85%, #fff 10%);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--c1) 34%, transparent), color-mix(in srgb, var(--c2) 14%, transparent) 70%, rgba(255, 255, 255, 0.03));
+  box-shadow: 0 10px 40px -14px var(--c1);
+}
+.channel .badge {
+  flex: none;
+  width: 52px; height: 52px;
+  border-radius: 16px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  box-shadow: 0 8px 24px -8px var(--c1);
+}
+.channel[href*='instagram'] .badge { background: linear-gradient(45deg, var(--c3), var(--c1) 45%, var(--c2)); }
+.channel .badge svg { width: 28px; height: 28px; margin: 0; color: #fff; }
+.channel .ch-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.channel .channel-t { font-size: 19px; }
+.channel small { font-size: 14px; color: rgba(255, 255, 255, 0.62); }
+.channel .flag { margin-inline-start: auto; width: 34px; height: 23px; border-radius: 4px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18); flex: none; }
+.channel::after { content: '↗'; margin-inline-start: auto; color: rgba(255, 255, 255, 0.5); font-size: 18px; transition: color 0.3s, transform 0.3s; }
+.channel:has(.flag)::after { display: none; }
+.channel:hover::after { color: #fff; transform: translate(2px, -2px); }
+.channel-wide { grid-column: 1 / -1; }
+.socials { display: none; }
