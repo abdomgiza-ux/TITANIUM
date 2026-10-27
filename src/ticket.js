@@ -76,7 +76,7 @@ form.addEventListener('submit', async (ev) => {
     status.textContent = `${t(lang, 'tk.ok')} ${id}`;
   } catch (err) {
     status.className = 'form-status err';
-    status.textContent = t(lang, 'status.err');
+    status.textContent = `${t(lang, 'status.err')} (${err.message})`;
   } finally {
     btn.disabled = false;
   }
