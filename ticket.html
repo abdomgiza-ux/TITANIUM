@@ -23,10 +23,12 @@
     <h1 class="section-title" data-i18n="tk.title">Tell us what's going on.</h1>
     <p class="lead" data-i18n="tk.sub">Describe the problem or the project. We'll reply to the email you give below, usually the same day.</p>
 
-    <form id="ticketForm" class="form" name="ticket" method="POST" action="/ticket.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+    <form id="ticketForm" class="form" name="ticket" method="POST" action="https://api.web3forms.com/submit" novalidate>
       <input type="hidden" name="form-name" value="ticket" />
       <input type="hidden" name="ticket_id" id="ticketId" value="" />
-      <p class="hp"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <input type="hidden" name="access_key" value="858c51ff-6741-4b14-851d-f76a9b9daad1" />
+      <input type="hidden" name="from_name" value="TiTANiUM Tickets" />
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" style="display:none" />
       <div class="row">
         <label class="field"><span data-i18n="f.name">Name</span><input name="name" type="text" required autocomplete="name" /></label>
         <label class="field"><span data-i18n="f.email">Email</span><input name="email" type="email" required autocomplete="email" dir="ltr" /></label>

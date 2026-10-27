@@ -62,12 +62,15 @@ form.addEventListener('submit', async (ev) => {
   btn.disabled = true;
 
   try {
-    const res = await fetch(form.getAttribute('action') || '/ticket.html', {
+    const data = Object.fromEntries(new FormData(form));
+    data.subject = `[${id}] ${data.subject || data.topic || 'New ticket'}`;
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(form)).toString(),
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(data),
     });
-    if (!res.ok) throw new Error(String(res.status));
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok || out.success === false) throw new Error(out.message || String(res.status));
     form.reset();
     status.className = 'form-status ok';
     status.textContent = `${t(lang, 'tk.ok')} ${id}`;
