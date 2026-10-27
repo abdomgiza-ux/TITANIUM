@@ -1,10 +1,11 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
-import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { buildProps } from './props.js';
+import { buildLaptop } from './hero.js';
+import { createBgCables } from './bgcables.js';
 
-const SLABS = 5;
-const ACCENT = new THREE.Color(0x2997ff);
+const RIMS = [0x2997ff, 0x8b5cf6, 0xff4fa3, 0x2de2a6].map((c) => new THREE.Color(c));
+const CHAPTER_RIM = [0x8b5cf6, 0x2de2a6, 0x2997ff, 0xff6b5e, 0xff4fa3, 0xb18cff, 0xffb020].map((c) => new THREE.Color(c));
 
 const lerp = (a, b, t) => a + (b - a) * t;
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -42,75 +43,11 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
 
   const root = new THREE.Group();
   scene.add(root);
-  const rack = new THREE.Group();
-  root.add(rack);
-
-  const bodyGeo = new RoundedBoxGeometry(3.0, 0.5, 1.9, 5, 0.07);
-  const faceGeo = new RoundedBoxGeometry(2.84, 0.34, 0.04, 3, 0.015);
-  const ledGeo = new THREE.BoxGeometry(0.06, 0.06, 0.03);
-  const barGeo = new THREE.BoxGeometry(0.9, 0.035, 0.03);
-  const ventGeo = new THREE.BoxGeometry(0.018, 0.2, 0.03);
-
-  const metal = new THREE.MeshPhysicalMaterial({
-    color: 0xaeb2b9,
-    metalness: 1,
-    roughness: 0.34,
-    clearcoat: 0.25,
-    clearcoatRoughness: 0.4,
-  });
-  const dark = new THREE.MeshStandardMaterial({ color: 0x0a0b0e, metalness: 0.6, roughness: 0.55 });
-
-  const slabs = [];
-  for (let i = 0; i < SLABS; i++) {
-    const g = new THREE.Group();
-    const body = new THREE.Mesh(bodyGeo, metal);
-    g.add(body);
-
-    const face = new THREE.Mesh(faceGeo, dark);
-    face.position.z = 0.955;
-    g.add(face);
-
-    for (let v = 0; v < 18; v++) {
-      const vent = new THREE.Mesh(ventGeo, metal);
-      vent.position.set(0.15 + v * 0.045, 0, 0.975);
-      g.add(vent);
-    }
-
-    // back panel: vents + ports so the rack reads as a real device from behind
-    const back = new THREE.Mesh(faceGeo, dark);
-    back.position.z = -0.955;
-    g.add(back);
-    for (let v = 0; v < 10; v++) {
-      const vent = new THREE.Mesh(ventGeo, metal);
-      vent.position.set(-1.1 + v * 0.045, 0, -0.975);
-      g.add(vent);
-    }
-    for (let n = 0; n < 6; n++) {
-      const port = new THREE.Mesh(ledGeo, dark);
-      port.scale.set(1.6, 1.6, 1);
-      port.position.set(0.1 + n * 0.17, 0, -0.978);
-      g.add(port);
-    }
-
-    const ledMat = new THREE.MeshStandardMaterial({
-      color: 0x111418,
-      emissive: ACCENT,
-      emissiveIntensity: 0.6,
-      metalness: 0,
-      roughness: 0.4,
-    });
-    for (let l = 0; l < 4; l++) {
-      const led = new THREE.Mesh(ledGeo, ledMat);
-      led.position.set(-1.28 + l * 0.12, 0.07, 0.98);
-      g.add(led);
-    }
-    const bar = new THREE.Mesh(barGeo, ledMat);
-    bar.position.set(-0.8, -0.07, 0.98);
-    g.add(bar);
-
-    rack.add(g);
-    slabs.push({ group: g, ledMat, glow: 0.6, glowTarget: 0.6 });
-  }
+  const hero = buildLaptop();
+  root.add(hero.group);
+  const bg = createBgCables();
+  scene.add(bg.group);
+  const rimTmp = new THREE.Color();
 
   // service props: assemble / disassemble on scroll
   const props = buildProps();
@@ -174,9 +111,8 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
     const f = svc.cur;
     const pw = smooth(0, 0.12, f) * (1 - smooth(N + 0.03, N + 0.15, f));
 
-    root.visible = pw < 0.995;
     root.position.set(narrow ? 0 : cur.x, cur.y + (narrow ? 2.4 : 0), 0);
-    root.scale.setScalar(Math.max(0.0001, cur.s * (narrow ? 0.55 : 1) * (1 - pw) * (1 + 0.035 * pulse)));
+    root.scale.setScalar(Math.max(0.0001, cur.s * (narrow ? 0.55 : 1) * (1 + 0.035 * pulse)));
     root.rotation.set(cur.rx + py, cur.ry + idle + px, 0);
 
     propsGroup.visible = pw > 0.001;
@@ -192,22 +128,20 @@ export function createScene(canvas, { reducedMotion = false } = {}) {
       }
     }
 
-    const spacing = lerp(0.62, 1.08, cur.explode);
-    for (let i = 0; i < SLABS; i++) {
-      const s = slabs[i];
-      const centered = i - (SLABS - 1) / 2;
-      s.group.position.y = -centered * spacing;
-      s.group.position.x = Math.sin(centered * 1.1) * 0.22 * cur.explode;
-      s.group.rotation.y = centered * 0.1 * cur.explode;
+    const sep = hero.update(time, cur.explode);
+    hero.setOpacity(THREE.MathUtils.clamp(cur.o * (narrow ? 0.7 : 1) * (1 - pw), 0, 1));
+    bg.update(time, window.scrollY, narrow);
 
-      s.glowTarget = i === active ? 6 : 0.45;
-      s.glow = lerp(s.glow, s.glowTarget, k);
-      const flicker = reducedMotion ? 0 : (Math.sin(time * 3 + i * 1.7) * 0.5 + 0.5) * 0.25;
-      s.ledMat.emissiveIntensity = s.glow + flicker + 1.6 * pulse;
+    // rim light drifts through the palette, and follows the active service
+    const hue = (time * 0.12) % RIMS.length;
+    const i0 = Math.floor(hue), fr = hue - i0;
+    rimTmp.copy(RIMS[i0]).lerp(RIMS[(i0 + 1) % RIMS.length], fr);
+    if (pw > 0.01) {
+      const ci = clamp(Math.round(f - 0.25), 0, N - 1);
+      rimTmp.lerp(CHAPTER_RIM[ci], pw);
     }
-
-    const alpha = THREE.MathUtils.clamp(cur.o * (narrow ? lerp(0.55, 0.95, pw) : 1), 0, 1);
-    canvas.style.opacity = alpha.toFixed(3);
+    rim.color.copy(rimTmp);
+    rim.intensity = 1.2 + 0.5 * pulse;
 
     renderer.render(scene, camera);
   }

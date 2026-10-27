@@ -139,6 +139,7 @@ function measure() {
   });
 }
 
+const SVC_COLORS = ['#8b5cf6', '#2de2a6', '#4da3ff', '#ff6b5e', '#ff4fa3', '#b18cff', '#ffb020'];
 const svcEls = $$('.svc');
 const svcDots = $$('.svc-dots li');
 const stepEls = $$('.step');
@@ -181,7 +182,7 @@ function update() {
   if (m.id === 'services') {
     const f = p * (CH + 0.15);
     const idx = Math.min(CH - 1, Math.floor(p * 0.9999 * CH));
-    if (idx !== svcIdx) { svcIdx = idx; setOn(svcEls, idx); setOn(svcDots, idx); }
+    if (idx !== svcIdx) { svcIdx = idx; setOn(svcEls, idx); setOn(svcDots, idx); document.documentElement.style.setProperty('--svc', SVC_COLORS[idx % SVC_COLORS.length]); }
     stage?.setServices(f, flip);
   } else {
     stage?.setServices(i < svcAt ? -1 : CH + 0.2, flip);

@@ -1,11 +1,12 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { buildPcBuild, buildNetwork, buildSecurity, buildPhoneInstall } from './props2.js';
 
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const easeOut = (x) => 1 - Math.pow(1 - x, 3);
 
-const ACCENT = 0x2997ff;
+export const ACCENT = 0x2997ff;
 
 /* ------------------------------------------------------------------ *
  *  Materials + small helpers
@@ -21,14 +22,14 @@ export function createMaterials() {
 }
 
 const geoCache = new Map();
-function rb(w, h, d, r = 0.04) {
+export function rb(w, h, d, r = 0.04) {
   const rad = Math.min(r, w * 0.5 - 1e-3, h * 0.5 - 1e-3, d * 0.5 - 1e-3);
   const key = [w, h, d, rad].join('|');
   if (!geoCache.has(key)) geoCache.set(key, new RoundedBoxGeometry(w, h, d, 3, rad));
   return geoCache.get(key);
 }
 
-function tex(w, h, draw) {
+export function tex(w, h, draw) {
   const c = document.createElement('canvas');
   c.width = w;
   c.height = h;
@@ -39,7 +40,7 @@ function tex(w, h, draw) {
   return t;
 }
 
-function roundRect(g, x, y, w, h, r) {
+export function roundRect(g, x, y, w, h, r) {
   g.beginPath();
   g.moveTo(x + r, y);
   g.arcTo(x + w, y, x + w, y + h, r);
@@ -49,17 +50,17 @@ function roundRect(g, x, y, w, h, r) {
   g.closePath();
 }
 
-const basic = (map) => new THREE.MeshBasicMaterial({ map, toneMapped: false });
-const plane = (w, h, map) => new THREE.Mesh(new THREE.PlaneGeometry(w, h), basic(map));
-const mesh = (geo, mat) => new THREE.Mesh(geo, mat);
-const glow = (hex, i = 1.6) => new THREE.MeshStandardMaterial({ color: 0x101216, emissive: hex, emissiveIntensity: i, roughness: 0.4 });
-const solid = (hex, rough = 0.45, metal = 0.2) => new THREE.MeshStandardMaterial({ color: hex, roughness: rough, metalness: metal });
+export const basic = (map) => new THREE.MeshBasicMaterial({ map, toneMapped: false });
+export const plane = (w, h, map) => new THREE.Mesh(new THREE.PlaneGeometry(w, h), basic(map));
+export const mesh = (geo, mat) => new THREE.Mesh(geo, mat);
+export const glow = (hex, i = 1.6) => new THREE.MeshStandardMaterial({ color: 0x101216, emissive: hex, emissiveIntensity: i, roughness: 0.4 });
+export const solid = (hex, rough = 0.45, metal = 0.2) => new THREE.MeshStandardMaterial({ color: hex, roughness: rough, metalness: metal });
 
 /* ------------------------------------------------------------------ *
  *  Prop = a group of parts that fly in and snap together
  *  update(e): e=1 fully scattered (invisible), e=0 fully assembled
  * ------------------------------------------------------------------ */
-function makeProp(fit = 1) {
+export function makeProp(fit = 1) {
   const group = new THREE.Group();
   group.scale.setScalar(fit);
   const parts = [];
@@ -432,5 +433,5 @@ function buildSocial(M) {
 
 export function buildProps() {
   const M = createMaterials();
-  return [buildWorkstation(M), buildRack(M), buildShield(M), buildCctv(M), buildPrinter(M), buildSoftware(M), buildSocial(M)];
+  return [buildPcBuild(M), buildNetwork(M), buildShield(M), buildSecurity(M), buildPrinter(M), buildPhoneInstall(M), buildSocial(M)];
 }
