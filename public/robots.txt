@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://titanium.technolgy.workers.dev/sitemap.xml

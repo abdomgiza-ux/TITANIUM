@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>افتح تذكرة صيانة | عبدالرحمن منصور، TiTANiUM Technology</title>
+<meta name="description" content="افتح تذكرة صيانة مع عبدالرحمن منصور في دبي: اكتب المشكلة ورقم التواصل، وأعاود الاتصال بك لتحديد موعد الفحص.">
+<meta name="theme-color" content="#0A0A0C">
+<link rel="canonical" href="https://titanium.technolgy.workers.dev/ticket.html">
+<link rel="alternate" hreflang="ar" href="https://titanium.technolgy.workers.dev/ticket.html?lang=ar">
+<link rel="alternate" hreflang="en" href="https://titanium.technolgy.workers.dev/ticket.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://titanium.technolgy.workers.dev/ticket.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TiTANiUM Technology">
+<meta property="og:title" content="Open a support ticket | TiTANiUM Technology">
+<meta property="og:description" content="Describe the problem and leave your number. We contact you to arrange the check.">
+<meta property="og:url" content="https://titanium.technolgy.workers.dev/ticket.html">
+<meta property="og:image" content="https://titanium.technolgy.workers.dev/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+(function(){var d=document.documentElement;d.classList.remove('no-js');var l=null;
+try{var q=new URLSearchParams(location.search).get('lang');if(q==='ar'||q==='en'){l=q;localStorage.setItem('titanium_lang',q);}else{l=localStorage.getItem('titanium_lang');}}catch(e){}
+if(l!=='ar'&&l!=='en'){l=(navigator.language||'').toLowerCase().indexOf('ar')===0?'ar':'en';}
+window.__lang=l;
+if(l==='en'){d.lang='en';d.dir='ltr';d.classList.add('i18n-pending');setTimeout(function(){d.classList.remove('i18n-pending');},1500);}else{d.lang='ar';d.dir='rtl';}
+})();
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="ticket">
+<a class="skip" href="#main" data-i18n="skip">تخطَّ إلى المحتوى</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="TiTANiUM Technology">
+      <img src="logo.svg" alt="TiTANiUM Technology" width="1748" height="480">
+    </a>
+    <nav class="nav" aria-label="القائمة الرئيسية" data-i18n-attr="aria-label:nav.label">
+      <a href="index.html#about" data-i18n="nav.about">خبرتي</a>
+      <a href="index.html#services" data-i18n="nav.services">الخدمات</a>
+      <a href="index.html#how" data-i18n="nav.how">كيف أعمل</a>
+      <a href="index.html#contact" data-i18n="nav.contact">تواصل</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang" role="group" aria-label="اللغة" data-i18n-attr="aria-label:lang.label">
+        <button type="button" data-lang="ar" aria-pressed="true" aria-label="العربية">AR</button>
+        <button type="button" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+      <a class="btn btn--gold btn--sm" href="https://wa.me/971541938341" target="_blank" rel="noopener" data-i18n="cta.waShort">واتساب</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap ticket-main">
+  <div class="ticket-head">
+    <h1 class="display" data-i18n="tk.title">افتح تذكرة صيانة</h1>
+    <p data-i18n="tk.lead">اكتب المشكلة ورقم التواصل، وأعاود الاتصال بك لتحديد موعد الفحص المبدئي المجاني.</p>
+  </div>
+
+  <div class="ticket-layout">
+    <form class="form" id="ticketForm" novalidate>
+      <div class="field">
+        <label for="f-name" data-i18n="tk.name">الاسم الكامل</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name">
+        <span class="err" id="e-name" role="alert"></span>
+      </div>
+      <div class="field">
+        <label for="f-phone" data-i18n="tk.phone">رقم الهاتف أو واتساب</label>
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+971 5X XXX XXXX" aria-describedby="e-phone">
+        <span class="err" id="e-phone" role="alert"></span>
+      </div>
+      <div class="field">
+        <label for="f-service" data-i18n="tk.service">نوع الخدمة المطلوبة</label>
+        <select id="f-service" name="service" required aria-describedby="e-service">
+          <option value="" data-i18n="tk.choose">اختر الخدمة</option>
+          <option value="laptop" data-i18n="s1.t">صيانة وتسريع اللابتوب والكمبيوتر</option>
+          <option value="network" data-i18n="s2.t">حل مشاكل الواي فاي والشبكات</option>
+          <option value="cctv" data-i18n="s3.t">تركيب وصيانة كاميرات المراقبة</option>
+          <option value="cabling" data-i18n="s4.t">تمديد الكابلات وتنظيم كبائن الشبكات</option>
+          <option value="printer" data-i18n="s5.t">صيانة الطابعات وتوفير الأحبار</option>
+          <option value="phone" data-i18n="s6.t">صيانة الهواتف والدعم البرمجي</option>
+          <option value="digital" data-i18n="dg.t">إدارة حسابات التواصل والإعلانات الممولة</option>
+        </select>
+        <span class="err" id="e-service" role="alert"></span>
+      </div>
+      <div class="field">
+        <label for="f-message" data-i18n="tk.message">وصف المشكلة أو الطلب</label>
+        <textarea id="f-message" name="message" required aria-describedby="e-message" placeholder="مثال: اللابتوب يسخن ويطفئ بعد عشر دقائق من التشغيل." data-i18n-attr="placeholder:tk.messagePh"></textarea>
+        <span class="err" id="e-message" role="alert"></span>
+      </div>
+      <div class="field">
+        <label for="f-time"><span data-i18n="tk.time">الوقت المفضل للتواصل أو الزيارة</span> <span class="opt" data-i18n="tk.optional">(اختياري)</span></label>
+        <input id="f-time" name="preferred_time" type="text" placeholder="مثال: اليوم بعد الخامسة مساءً" data-i18n-attr="placeholder:tk.timePh">
+      </div>
+      <div class="hp" aria-hidden="true">
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="form-foot">
+        <div class="banner banner--ok" id="formOk" role="status" tabindex="-1" hidden></div>
+        <div class="banner banner--err" id="formErr" role="alert" tabindex="-1" hidden></div>
+        <button class="btn btn--gold" type="submit" id="formSubmit" data-i18n="tk.send">أرسل التذكرة</button>
+      </div>
+    </form>
+
+    <aside class="aside" aria-labelledby="asideTitle">
+      <h2 id="asideTitle" data-i18n="tk.next">ماذا يحدث بعد الإرسال؟</h2>
+      <ol>
+        <li data-i18n="tk.n1">تصلني تذكرتك فوراً.</li>
+        <li data-i18n="tk.n2">أتواصل معك على الرقم الذي كتبته لتحديد الموعد.</li>
+        <li data-i18n="tk.n3">أفحص المشكلة مجاناً وأخبرك بالسعر قبل البدء.</li>
+      </ol>
+      <a class="btn" href="https://wa.me/971541938341" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.6A8.5 8.5 0 1 1 8 19.2z"/><path d="M9 8.6c0 3 2.6 5.8 5.6 6.2l1.3-1.5-2-1.2-.9.8c-.9-.4-1.7-1.2-2.1-2.1l.8-.9-1.2-2z"/></svg><span data-i18n="tk.waInstead">أو راسلني على واتساب</span></a>
+    </aside>
+  </div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <img class="foot-logo" src="logo.svg" alt="TiTANiUM Technology" width="1748" height="480" loading="lazy">
+        <div class="foot-loc" data-i18n="ft.loc">عبدالرحمن منصور، دبي، الإمارات العربية المتحدة</div>
+      </div>
+      <div class="lang" role="group" aria-label="اللغة" data-i18n-attr="aria-label:lang.label">
+        <button type="button" data-lang="ar" aria-pressed="true" aria-label="العربية">AR</button>
+        <button type="button" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="https://wa.me/971541938341" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.6A8.5 8.5 0 1 1 8 19.2z"/><path d="M9 8.6c0 3 2.6 5.8 5.6 6.2l1.3-1.5-2-1.2-.9.8c-.9-.4-1.7-1.2-2.1-2.1l.8-.9-1.2-2z"/></svg></a>
+      <a href="https://instagram.com/titanium.tech" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="0.6" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61595704865811" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><path d="M13 20.5v-7h2.4l.4-2.8H13V9c0-.9.4-1.5 1.5-1.5H16V5.1c-.5-.1-1.2-.1-1.9-.1-2 0-3.3 1.2-3.3 3.5v2.2H8.6v2.8h2.2v7"/></svg></a>
+      <a class="txt" href="index.html" data-i18n="ft.home">الصفحة الرئيسية</a>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
