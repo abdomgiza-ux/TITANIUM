@@ -447,9 +447,5 @@ input[type="tel"] { direction: ltr; }
   .no-js .svc-fig, .reduced .svc-fig { padding-block: 56px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { transition: none !important; animation: none !important; }
-}
 
 @media (min-width: 1000px) { .chip { width: 112px; border-radius: 26px; } .acts { max-width: 1040px; margin-top: 44px; } .st-quiet { margin-top: 44px; } }

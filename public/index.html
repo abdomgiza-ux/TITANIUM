@@ -29,7 +29,6 @@ try{var q=new URLSearchParams(location.search).get('lang');if(q==='ar'||q==='en'
 if(l!=='ar'&&l!=='en'){l=(navigator.language||'').toLowerCase().indexOf('ar')===0?'ar':'en';}
 window.__lang=l;
 if(l==='en'){d.lang='en';d.dir='ltr';d.classList.add('i18n-pending');setTimeout(function(){d.classList.remove('i18n-pending');},1500);}else{d.lang='ar';d.dir='rtl';}
-try{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('reduced');}}catch(e){}
 })();
 </script>
 <link rel="stylesheet" href="styles.css">
